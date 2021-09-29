@@ -11,6 +11,14 @@ namespace Lab12_1_ConsumingAnAPI.Models
         public string deck_id { get; set; }
         public int remaining { get; set; }
         public bool shuffled { get; set; }
-        public int deck_count { get; set; }
+        public List<Draw> cards { get; set; }
+    }
+
+    public class Draw
+    {
+        public string image { get; set; }
+        public string value { get; set; }
+        public string suit { get; set; }
+        public string code { get; set; }
     }
 }

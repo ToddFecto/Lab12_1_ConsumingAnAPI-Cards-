@@ -1,8 +1,35 @@
-﻿@{
+﻿@model CardDeck
+@{
     ViewData["Title"] = "Home Page";
+    string hand = Poker.GetHand(Model.cards);
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div>
+    Deck ID: @Model.deck_id<br />
+    Cards Remaining: @Model.remaining
+</div>
+
+<a href="/home/index?deck_id=@Model.deck_id" class="btn btn-primary">Draw 7</a>
+<br />
+
+@if (Model.remaining == 0)
+{
+    <a href="/" class="btn btn-primary">Start Over</a>
+}
+
+<br />
+
+@if (hand != null)
+{
+    <div>Congratulations! You drew a @hand</div>
+}
+
+@foreach (Draw card in Model.cards)
+{
+    <img src="@card.image" />
+}
