@@ -5,8 +5,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2 class="display-4">Deck Of Cards Game</h2>
 </div>
 
 <div>
@@ -14,15 +13,36 @@
     Cards Remaining: @Model.remaining
 </div>
 
+<a href="/home/APartialDeck" class="btn btn-primary">Draw 1 - 12 Card Deck</a>
+<br />
+
 <a href="/home/index?deck_id=@Model.deck_id" class="btn btn-primary">Draw 7</a>
+<br />
+
+@if (Model.remaining >= 0)
+{
+    <a href="/home/Reshuffle/?deck_id=@Model.deck_id" class="btn btn-primary">Reshuffle Deck</a>
+}
+<br />
+
+@if (Model.remaining >= 0)
+{
+    <a href="/home/NewDeck/?deck_id=@Model.deck_id" class="btn btn-primary">Brand New Deck</a>
+}
+<br />
+
+@if (Model.remaining >= 0)
+{
+    <a href="/home/NewDeckWithJokers/?deck_id=@Model.deck_id" class="btn btn-primary">New Deck With Jokers</a>
+}
 <br />
 
 @if (Model.remaining == 0)
 {
     <a href="/" class="btn btn-primary">Start Over</a>
 }
-
 <br />
+
 
 @if (hand != null)
 {

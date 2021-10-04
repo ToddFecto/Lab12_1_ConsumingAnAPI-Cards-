@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "NewDeck";
+}
+
+<div class="text-center">
+    <h1 class="display-4">New Deck With Jokers</h1>
+</div>
+
+@model CardDeck
+@{
+    ViewData["Title"] = "Home Page";
+    string hand = Poker.GetHand(Model.cards);
+}
+
+<div>
+    Deck ID: @Model.deck_id<br />
+    Cards Remaining: @Model.remaining
+</div>
+
+<a href="/home/index?deck_id=@Model.deck_id" class="btn btn-primary">Draw 7</a>
+<br />
+
+@if (Model.remaining >= 0)
+{
+    <a href="/home/index/Reshuffle/?deck_id=@Model.deck_id" class="btn btn-primary">Reshuffle Deck</a>
+}
+<br />
+
+@if (Model.remaining == 0)
+{
+    <a href="/" class="btn btn-primary">Start Over</a>
+}
+<br />
+
+
+@if (hand != null)
+{
+    <div>Congratulations! You grabbed a Brand New Unshuffled Deck and drew a @hand</div>
+}
+
+@foreach (Draw card in Model.cards)
+{
+    <img src="@card.image" />
+}

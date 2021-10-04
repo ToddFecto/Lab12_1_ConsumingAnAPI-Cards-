@@ -12,6 +12,7 @@ namespace Lab12_1_ConsumingAnAPI.Models
         public int remaining { get; set; }
         public bool shuffled { get; set; }
         public List<Draw> cards { get; set; }
+
     }
 
     public class Draw
