@@ -107,5 +107,19 @@ namespace Lab12_1_ConsumingAnAPI.Models
 
             return result.deck_id;
         }
+
+        public static async Task<string> AddPiles(string deck_id)
+        {
+            //string domain = "https://deckofcardsapi.com";
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri(domain);
+
+            string path = $"/api/deck/{deck_id}/pile/discard/add/?cards=AS,2S";
+
+            var connection = await GetHttpClient().GetAsync(path); // Async means our function will pause and wait until GetAsync finishes. Then come back and pick up where we left off.
+            CardDeck result = await connection.Content.ReadAsAsync<CardDeck>();
+
+            return result.deck_id;
+        }
     }
 }

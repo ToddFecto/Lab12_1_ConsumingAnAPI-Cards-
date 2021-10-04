@@ -57,6 +57,23 @@ namespace Lab12_1_ConsumingAnAPI.Controllers
         public async Task<IActionResult> APartialDeck(string deck_id)
         {
             /*
+              Piles can be used for discarding, players hands, or whatever else.
+              Piles are created on the fly, just give a pile a name and add a drawn
+              card to the pile. If the pile didn't exist before, it does now. After a 
+              card has been drawn from the deck it can be moved from pile to pile.
+             */
+            if (deck_id == null)
+            {
+                deck_id = await DAL.AddPiles(deck_id);
+            }
+
+            CardDeck cards = await DAL.DrawACard(deck_id, 1);
+            return View(cards);
+        }
+
+        public async Task<IActionResult> AddingToPiles(string deck_id)
+        {
+            /*
               In this example, we are asking for a deck consisting of all the aces,
               twos, and kings.
               The value, one of A (for an ace), 2, 3, 4, 5, 6, 7, 8, 9, 0 (for a ten),

@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">New Deck With Jokers</h1>
+    <h1 class="display-4">New Deck With Jokers And Piles</h1>
 </div>
 
 @model CardDeck
@@ -42,4 +42,9 @@
 @foreach (Draw card in Model.cards)
 {
     <img src="@card.image" />
+}
+
+@foreach (Stacks discards in Model.piles)
+{
+    <img src="@discards.discard" />
 }
